@@ -54,6 +54,9 @@ gem 'active_model_serializers'
 
 gem 'foreman'
 
+gem 'versionist'
+gem 'jwt'
+
 # Active Admin
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources'
