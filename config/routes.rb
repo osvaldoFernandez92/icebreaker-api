@@ -1,6 +1,7 @@
 IcebreakerApi::Application.routes.draw do
-  # mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
+
+  devise_for :users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   root to: 'application#index'
 
   require 'sidekiq/web'
@@ -12,10 +13,20 @@ IcebreakerApi::Application.routes.draw do
     resources :users, only: [:index, :create, :show, :update] do
       collection do
         get :me, to: "users#me"
-        get :send_confirmation, to: "users#send_confirmation"
       end
       member do
         resources :comments, only: [:index]
+      end
+    end
+
+    resources :activities, only: [:search] do
+      collection do
+        get :search
+        get :my_activities
+      end
+
+      member do
+        post :join
       end
     end
 
