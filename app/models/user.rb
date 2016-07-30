@@ -5,4 +5,7 @@ class User < ActiveRecord::Base
     payload = { user_id: id }
     TokenManager::AuthToken.encode(payload)
   end
+
+  enum gender: [:n_a, :female, :male]
+
 end
