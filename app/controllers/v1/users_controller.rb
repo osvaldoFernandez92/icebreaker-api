@@ -16,15 +16,7 @@ module V1
     # GET /v1/users/:id
     def show
       return render status: :ok, json: current_user,
-                    serializer: UserSerializer if same_id_as_current_user
-      render status: :ok, serializer: BasicUserSerializer,
-             json: User.find(params.permit(id: Parameters.id)[:id])
-    end
-
-    # GET /v1/users/me
-    def me
-      render status: :ok, json: current_user,
-             serializer: UserSerializer, with_vanpool_confirmation: true
+                    serializer: UserSerializer
     end
 
     # PUT /v1/users/:id
@@ -45,7 +37,7 @@ module V1
     end
 
     def edit_params
-      params.permit(:first_name, :last_name, :gender, :age, :description)
+      params.permit(:first_name, :last_name, :gender, :age, :description, interests: [])
     end
   end
 end

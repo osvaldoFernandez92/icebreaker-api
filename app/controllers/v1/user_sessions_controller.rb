@@ -7,7 +7,7 @@ module V1
         render json: { error: 'Invalid email or password' }, status: :unauthorized
       else
         access_token = user.generate_access_token
-        render json: { session_token: access_token }, status: :ok
+        render status: :created, json: user, serializer: UserSerializer, root: false, with_token: access_token
       end
     end
 
