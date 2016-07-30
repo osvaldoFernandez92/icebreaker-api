@@ -2,6 +2,10 @@ module V1
   class UsersController < ApiController
     before_action :authenticate_request, only: [:show, :me, :update]
 
+    def index
+      render json: User.all, each_serializer: UserSerializer
+    end
+
     # POST /v1/users
     def create
       user = User.new(register_params)
