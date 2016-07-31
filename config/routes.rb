@@ -14,12 +14,9 @@ IcebreakerApi::Application.routes.draw do
       collection do
         get :me, to: "users#me"
       end
-      member do
-        resources :comments, only: [:index]
-      end
     end
 
-    resources :activities, only: [:search] do
+    resources :activities, only: [:search, :create, :show] do
       collection do
         get :search
         get :my_activities
@@ -27,6 +24,7 @@ IcebreakerApi::Application.routes.draw do
 
       member do
         post :join
+        post :add_comment
       end
     end
 
