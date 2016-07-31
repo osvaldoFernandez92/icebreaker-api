@@ -45,6 +45,12 @@ module IcebreakerApi
     # in your app. As such, your models will need to explicitly whitelist or blacklist accessible
     # parameters by using an attr_accessible or attr_protected declaration.
     # config.active_record.whitelist_attributes = true
+    config.middleware.insert_before Warden::Manager, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :options, :patch, :put, :delete]
+      end
+    end
 
     # Enable the asset pipeline
     config.assets.enabled = true
