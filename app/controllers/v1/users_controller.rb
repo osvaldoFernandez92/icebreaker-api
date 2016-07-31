@@ -30,8 +30,11 @@ module V1
       render status: :ok, json: current_user, serializer: UserSerializer
     end
 
-    private
+    def me
+     render status: :ok, json: current_user, serializer: UserSerializer
+    end
 
+    private
 
     def register_params
       params.permit(
