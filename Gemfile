@@ -44,6 +44,9 @@ gem 'turbolinks'
 
 gem 'jquery-turbolinks'
 
+
+gem 'rack-cors', require: 'rack/cors'
+
 # Authentication
 gem 'devise'
 gem 'devise-async'
