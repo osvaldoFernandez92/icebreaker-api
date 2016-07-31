@@ -24,6 +24,7 @@ IcebreakerApi::Application.routes.draw do
 
       member do
         post :join
+        post :leave
         post :add_comment
       end
     end
