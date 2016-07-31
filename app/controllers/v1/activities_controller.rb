@@ -40,8 +40,9 @@ module V1
         act[:activity_id]
       end
 
-      @feed = Activity.find(@challenges_im_invited + @acts_no_challenges_id - @act_i_participate - @full_activities - @expired)
-
+      @feedChallenges = Activity.find(@challenges_im_invited - @act_i_participate - @full_activities - @expired)
+      @feedActivities = Activity.find(@acts_no_challenges_id - @act_i_participate - @full_activities - @expired)
+      @feed = @feedChallenges + @feedActivities
       render json: @feed, each_serializer: ActivitySerializer
     end
 
